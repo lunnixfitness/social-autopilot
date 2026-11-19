@@ -1,4 +1,4 @@
-# social-autopilot — Instagram + YouTube Shorts no automático
+# social-autopilot — Instagram, Facebook e YouTube Shorts no automático
 
 Todo dia às **12:10 (Brasília)**, o GitHub Actions executa estas etapas:
 
@@ -45,6 +45,14 @@ Com o app em modo de desenvolvimento, a publicação já funciona na sua própri
 
 > ⚠️ **Trava do YouTube:** vídeos enviados por projetos de API que ainda não passaram na auditoria do Google ficam **privados**, por regra do YouTube, não por erro deste código. O workflow avisa no log quando isso acontece. Para liberar o modo público, preencha o formulário **YouTube API Services – Audit and Quota Extension**, que é gratuito e leva algumas semanas. Até a aprovação, os Shorts sobem e ficam prontos no YouTube Studio, e você pode publicar todos de uma vez lá, ou trocar `privacidade` para `private` no `brand.yaml` para assumir isso.
 
+### 3.1 Facebook: Página Velatrix (API oficial, gratuita)
+Reels e carrosséis do Instagram também saem na **Página Velatrix**: o reel vira Reel do Facebook, e o carrossel vira um post com várias fotos. Ao final de cada post vai o convite para o grupo (`brand.yaml → facebook.grupo_url`).
+1. Use o mesmo app da Meta do passo 2 e adicione o produto **Facebook Login for Business**.
+2. Em <https://developers.facebook.com/tools/explorer>, selecione o app e peça as permissões `pages_show_list`, `pages_manage_posts`, `pages_read_engagement` e `publish_video`. Gere o token de usuário.
+3. No mesmo Explorer, consulte `me/accounts`: a linha da **Velatrix** traz o `id` (vai em `FB_PAGE_ID`) e o `access_token` da Página (vai em `FB_PAGE_TOKEN`). Se o token de usuário era de longa duração, o da Página não expira.
+
+> **Grupos não têm API**: a Meta desligou a publicação em grupos em 2024. O grupo é tocado no app (posts agendados pelo próprio grupo), e o automático leva tráfego da Página, do Instagram e do YouTube para ele.
+
 ### 4. Secrets do repositório
 Abra **Settings → Secrets and variables → Actions → New repository secret**.
 
@@ -53,6 +61,7 @@ Abra **Settings → Secrets and variables → Actions → New repository secret*
 | `IG_ACCESS_TOKEN` | Instagram | o token do passo 2 |
 | `GH_PAT` | Instagram | token *fine-grained* do GitHub, só deste repositório, com **Secrets: Read and write**. Renova o token do Instagram |
 | `YT_CLIENT_ID` / `YT_CLIENT_SECRET` / `YT_REFRESH_TOKEN` | YouTube | os valores do passo 3 |
+| `FB_PAGE_ID` / `FB_PAGE_TOKEN` | Facebook | os valores do passo 3.1 |
 | `GEMINI_API_KEY` | não | chave do Google AI Studio. Sem ela, os textos saem como estão no banco |
 | `IG_USER_ID` | não | descoberto automaticamente |
 
