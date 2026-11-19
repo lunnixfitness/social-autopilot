@@ -43,6 +43,11 @@ voz:
   nome: "Charon"
   estilo: "Locutor brasileiro, tom confiante e próximo, ritmo ágil de vídeo curto"
 
+facebook:
+  pagina: "Velatrix"
+  grupo_url: "https://www.facebook.com/groups/velatrixparceiros"
+  convite_grupo: "Grupo para advogados, contadores e peritos:"
+
 youtube:
   categoria: "27"          # Educação
   privacidade: "public"    # vira "private" enquanto o projeto Google não passar na auditoria

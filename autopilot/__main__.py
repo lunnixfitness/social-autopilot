@@ -92,6 +92,26 @@ def cmd_publish(a) -> int:
             hist.record(m["date"], m["topic"], "instagram_erro", {"ok": False, "erro": str(e)[:500]})
             errors.append("instagram")
 
+    fb_id, fb_tok = os.environ.get("FB_PAGE_ID"), os.environ.get("FB_PAGE_TOKEN")
+    if ig and ig["format"] in {"reel", "carrossel"}:
+        if not (fb_id and fb_tok):
+            log.warning("Facebook não configurado (faltam FB_PAGE_ID/FB_PAGE_TOKEN): pulando")
+        elif not hist.done(m["date"], "facebook"):
+            from .facebook import FacebookPage, fb_text
+            try:
+                page = FacebookPage(fb_id, fb_tok)
+                texto = fb_text(ig["caption"], ig["first_comment"].split(), brand)
+                if ig["format"] == "reel":
+                    fid = page.reel(base + ig["video"], texto)
+                else:
+                    fid = page.album([base + s for s in ig["slides"]], texto)
+                hist.record(m["date"], m["topic"], "facebook", {"ok": True, "id": fid, "format": ig["format"]})
+                log.info("Facebook %s publicado: %s", ig["format"], fid)
+            except Exception as e:
+                log.error("Facebook falhou: %s", e)
+                hist.record(m["date"], m["topic"], "facebook_erro", {"ok": False, "erro": str(e)[:500]})
+                errors.append("facebook")
+
     yt = m.get("youtube")
     creds = [os.environ.get(k) for k in ("YT_CLIENT_ID", "YT_CLIENT_SECRET", "YT_REFRESH_TOKEN")]
     if yt and not all(creds):
