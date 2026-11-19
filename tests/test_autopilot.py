@@ -247,3 +247,36 @@ def test_demo_narration_is_clean():
         assert len(titulo) <= 100
         for _, _, fala in itens:
             check_forbidden(fala, BRAND["termos_proibidos"])
+
+
+# ---------- Facebook (API simulada) ----------
+def test_facebook_album_and_reel_flow():
+    from autopilot.facebook import FacebookPage, fb_text
+
+    class S:
+        def __init__(self):
+            self.calls, self.n = [], 0
+
+        def request(self, method, url, params=None, data=None, headers=None, timeout=None):
+            self.calls.append((method, url, dict(data or params or {}), headers))
+            if method == "GET":
+                return _Resp({"status": {"video_status": "ready"}})
+            if (data or {}).get("upload_phase") == "start":
+                return _Resp({"video_id": "v1", "upload_url": "https://rupload.facebook.com/x/v1"})
+            self.n += 1
+            return _Resp({"id": f"p{self.n}", "success": True})
+
+    s = S()
+    page = FacebookPage("123", "tok", session=s)
+    pid = page.album(["https://x/1.jpg", "https://x/2.jpg"], "texto")
+    feed = [c for c in s.calls if c[1].endswith("/123/feed")][0][2]
+    assert feed["attached_media[0]"] == '{"media_fbid": "p1"}' and pid == "p3"
+    s.calls.clear()
+    assert page.reel("https://x/r.mp4", "desc") == "v1"
+    up = [c for c in s.calls if "rupload" in c[1]][0]
+    assert up[3] == {"Authorization": "OAuth tok", "file_url": "https://x/r.mp4"}
+    fin = [c for c in s.calls if c[2].get("upload_phase") == "finish"][0][2]
+    assert fin["video_state"] == "PUBLISHED" and fin["description"] == "desc"
+    b = dict(BRAND, facebook={"grupo_url": "https://fb.com/groups/x", "convite_grupo": "Grupo:"})
+    t = fb_text("legenda", ["#a", "#b", "#c", "#d"], b)
+    assert "https://fb.com/groups/x" in t and "#d" not in t
