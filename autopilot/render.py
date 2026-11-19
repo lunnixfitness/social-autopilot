@@ -93,8 +93,9 @@ def background(size: tuple[int, int], brand: dict, photo: Path | None = None, da
         left, top = (im.width - w) // 2, max(0, (im.height - h) // 3)
         im = im.crop((left, top, left + w, top + h))
         grad = Image.new("L", (1, h))
-        for y in range(h):  # escurece mais embaixo, onde vai o texto
-            grad.putpixel((0, y), int(255 * min(1, darken * 0.55 + darken * 0.8 * y / h)))
+        for y in range(h):  # rosto visível em cima, escurece embaixo, onde vai o texto
+            t = max(0.0, (y / h - 0.30) / 0.45)
+            grad.putpixel((0, y), int(255 * min(0.94, 0.12 + 0.85 * min(1.0, t) * darken / 0.7)))
         overlay = Image.new("RGB", (w, h), navy)
         return Image.composite(overlay, im, grad.resize((w, h)))
     base = Image.new("RGB", (w, h), navy)
@@ -181,10 +182,11 @@ def carousel(topic: Topic, brand: dict, out: Path, date: dt.date) -> list[Path]:
 def story(topic: Topic, brand: dict, out: Path, date: dt.date, kind: str) -> Path:
     size = (W, STORY_H)
     white, gold, soft = (hex2rgb(brand["cores"][k]) for k in ("texto", "destaque", "suave"))
-    im = background(size, brand, pick_photo(date, "story"), darken=0.7)
+    photo = pick_photo(date, "story")
+    im = background(size, brand, photo, darken=0.7)
     d = ImageDraw.Draw(im)
     inner = W - 2 * MARGIN
-    top = 300  # zona segura: topo e base ficam sob a interface do Instagram
+    top = 860 if photo else 300  # com foto, o texto vai para baixo do rosto
     if kind == "dica":
         _label(d, (MARGIN, top), "DICA DE DOMINGO", brand)
         f, lines, h = fit_text(d, topic.gancho, inner, 420, 86)
@@ -198,7 +200,7 @@ def story(topic: Topic, brand: dict, out: Path, date: dt.date, kind: str) -> Pat
         f, lines, h = fit_text(d, topic.gancho, inner, 700, 96)
         y = draw_block(d, (MARGIN, top + 80), lines, f, white)
         d.text((MARGIN, y + 60), brand["cta"]["story"], font=font(44), fill=gold)
-    d.text((MARGIN, STORY_H - 330), brand["perfil"]["instagram"], font=font(40), fill=soft)
+    d.text((MARGIN, 190), brand["perfil"]["instagram"], font=font(40), fill=soft)  # topo: a base fica sob a interface
     p = out / "story.jpg"
     im.save(p, "JPEG", quality=92)
     return p
