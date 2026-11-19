@@ -1,0 +1,66 @@
+# Identidade, calendário e travas. Edite aqui; o código lê tudo deste arquivo.
+perfil:
+  instagram: "@ademilson_melo2.0"
+  nome: "Ademilson Melo"
+  site: "velatrix.com.br"
+
+cores:
+  fundo: "#0B1F3A"      # azul-marinho
+  destaque: "#C9A227"   # dourado
+  texto: "#FFFFFF"
+  suave: "#B8C4D6"
+
+# Ordem dos pilares; a cada 5 posts, 1 é do Velatrix e 1 é para escritórios.
+rodizio_pilares: [tributario, escritorios, previdenciario, pericia, velatrix]
+
+# Calendário. weekday: 0=segunda ... 6=domingo
+calendario:
+  instagram:
+    0: reel
+    1: carrossel
+    2: reel
+    3: carrossel
+    4: reel
+    5: reel
+    6: dica_story      # domingo: só story com dica
+  youtube_shorts: [0, 1, 2, 3, 4, 5]   # Short de segunda a sábado
+
+horario_local: "12:10"   # America/Sao_Paulo (o cron do workflow segue este horário)
+
+cta:
+  padrao: "Salve este post e mande para quem precisa ver."
+  velatrix: "Conheça o Velatrix: velatrix.com.br"
+  story: "Post novo no perfil. Toque para ver."
+
+aviso_legal: "Conteúdo informativo. Cada caso exige análise individual."
+
+hashtags_fixas: ["#direitotributario"]
+max_hashtags: 5
+
+# Narração por IA (Gemini TTS). Precisa do secret GEMINI_API_KEY. Vozes: Charon, Puck, Kore, Fenrir, Orus...
+voz:
+  ativa: true
+  nome: "Charon"
+  estilo: "Locutor brasileiro, tom confiante e próximo, ritmo ágil de vídeo curto"
+
+youtube:
+  categoria: "27"          # Educação
+  privacidade: "public"    # vira "private" enquanto o projeto Google não passar na auditoria
+  idioma: "pt-BR"
+
+# Provimento 205/2021 da OAB: publicidade informativa, sem promessa de resultado nem captação.
+termos_proibidos:
+  - "garantido"
+  - "garantia de resultado"
+  - "100%"
+  - "causa ganha"
+  - "sem risco"
+  - "ganho certo"
+  - "resultado certo"
+  - "melhor advogado"
+  - "o melhor escritório"
+  - "honorários baixos"
+  - "consulta grátis"
+  - "gratuitamente"
+  - "dinheiro fácil"
+  - "imperdível"

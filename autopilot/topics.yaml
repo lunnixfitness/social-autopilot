@@ -1,0 +1,230 @@
+# Banco de temas VERIFICADO. A IA só pode reescrever o tom; número, lei, tema
+# ou data que não estiver aqui faz o texto da IA ser descartado.
+# Campos: id, pilar, gancho (capa), pontos (3 a 5), base_legal, hashtags (até 4), titulo_yt
+temas:
+
+  - id: tema69
+    pilar: tributario
+    gancho: "Sua empresa pode estar pagando PIS e Cofins sobre o ICMS"
+    pontos:
+      - "No Tema 69, o STF decidiu que o ICMS não compõe a base de cálculo do PIS e da Cofins."
+      - "O ICMS a excluir é o destacado na nota fiscal, conforme os embargos julgados em 2021."
+      - "Os efeitos valem a partir de 15/03/2017, ressalvadas as ações ajuizadas até essa data."
+      - "Quem pagou a maior pode pedir de volta o que pagou nos últimos 5 anos."
+    base_legal: "STF, RE 574.706 (Tema 69); CTN, art. 168"
+    hashtags: ["#tema69", "#pisecofins", "#recuperacaotributaria", "#icms"]
+    titulo_yt: "ICMS fora da base do PIS/Cofins: o Tema 69 em 30 segundos"
+
+  - id: monofasicos
+    pilar: tributario
+    gancho: "Empresa do Simples que revende monofásico pode estar pagando PIS e Cofins em dobro"
+    pontos:
+      - "Na tributação monofásica, o PIS e a Cofins são cobrados de uma vez, no fabricante ou importador."
+      - "Na revenda, a empresa do Simples deve separar essas receitas e tirar o PIS e a Cofins do DAS."
+      - "Medicamentos, perfumaria, autopeças, bebidas frias e combustíveis são exemplos comuns."
+      - "Se a separação não foi feita, dá para recuperar os valores dos últimos 5 anos."
+    base_legal: "LC 123/2006, art. 18, § 4º-A, I; CTN, art. 168"
+    hashtags: ["#simplesnacional", "#monofasico", "#pisecofins", "#recuperacaotributaria"]
+    titulo_yt: "Simples Nacional e monofásicos: você pode estar pagando PIS/Cofins à toa"
+
+  - id: insumos
+    pilar: tributario
+    gancho: "Insumo não é só matéria-prima"
+    pontos:
+      - "No regime não cumulativo, insumos geram crédito de PIS e Cofins."
+      - "O STJ definiu que insumo é o que for essencial ou relevante para a atividade da empresa."
+      - "A análise é feita item a item, olhando o processo produtivo ou a prestação do serviço."
+      - "Créditos não aproveitados podem ser recuperados dentro do prazo de 5 anos."
+    base_legal: "STJ, REsp 1.221.170/PR (Temas 779 e 780); Lei 10.637/2002 e Lei 10.833/2003, art. 3º, II"
+    hashtags: ["#insumos", "#pisecofins", "#naocumulativo", "#creditotributario"]
+    titulo_yt: "Insumo para crédito de PIS/Cofins: o critério do STJ"
+
+  - id: prazo5anos
+    pilar: tributario
+    gancho: "Tributo pago a mais tem prazo para pedir de volta"
+    pontos:
+      - "O prazo para pedir a restituição de tributo pago indevidamente é de 5 anos."
+      - "Ele conta da data do pagamento, e cada mês que passa é um mês que se perde."
+      - "Por isso a revisão tributária deve ser feita antes de o prazo correr."
+    base_legal: "CTN, art. 168, I; LC 118/2005, art. 3º"
+    hashtags: ["#restituicao", "#recuperacaotributaria", "#prescricao", "#tributos"]
+    titulo_yt: "Pagou tributo a mais? O prazo de 5 anos para recuperar"
+
+  - id: compensacao
+    pilar: tributario
+    gancho: "Crédito tributário pode virar abatimento de imposto"
+    pontos:
+      - "Crédito reconhecido contra a Receita Federal pode ser usado para quitar outros tributos."
+      - "A compensação é declarada pela própria empresa, no PER/DCOMP."
+      - "O valor é corrigido pela Selic até a data da compensação."
+    base_legal: "Lei 9.430/1996, art. 74; Lei 9.250/1995, art. 39, § 4º"
+    hashtags: ["#perdcomp", "#compensacao", "#selic", "#tributos"]
+    titulo_yt: "Compensação tributária no PER/DCOMP: como o crédito vira abatimento"
+
+  - id: ppp
+    pilar: previdenciario
+    gancho: "O PPP pode valer anos de aposentadoria"
+    pontos:
+      - "O PPP é o documento que mostra a exposição do trabalhador a agentes nocivos."
+      - "A empresa tem de mantê-lo atualizado e entregar uma cópia na rescisão do contrato."
+      - "Sem ele, ou com ele errado, o tempo especial pode não ser reconhecido pelo INSS."
+    base_legal: "Lei 8.213/1991, art. 58, § 4º"
+    hashtags: ["#ppp", "#aposentadoriaespecial", "#inss", "#direitoprevidenciario"]
+    titulo_yt: "PPP: o documento que pode mudar a sua aposentadoria"
+
+  - id: ltcat
+    pilar: previdenciario
+    gancho: "Quem assina o laudo que sustenta o seu PPP"
+    pontos:
+      - "O PPP se baseia no LTCAT, o laudo técnico das condições ambientais do trabalho."
+      - "O LTCAT é emitido por médico do trabalho ou engenheiro de segurança do trabalho."
+      - "Um laudo genérico ou desatualizado é ponto de contestação no processo."
+    base_legal: "Lei 8.213/1991, art. 58, § 1º"
+    hashtags: ["#ltcat", "#ppp", "#aposentadoriaespecial", "#periciatecnica"]
+    titulo_yt: "LTCAT e PPP: quem assina e por que isso importa"
+
+  - id: ruido
+    pilar: previdenciario
+    gancho: "Ruído: o limite mudou três vezes"
+    pontos:
+      - "Até 05/03/1997, o limite de ruído para tempo especial era de 80 dB."
+      - "De 06/03/1997 a 18/11/2003, passou a ser de 90 dB."
+      - "A partir de 19/11/2003, o limite é de 85 dB."
+      - "Para ruído, o STF decidiu que o EPI não afasta o tempo especial."
+    base_legal: "STJ, REsp 1.398.260/PR (Tema 694); STF, ARE 664.335 (Tema 555)"
+    hashtags: ["#ruido", "#aposentadoriaespecial", "#inss", "#tempoespecial"]
+    titulo_yt: "Ruído e aposentadoria especial: os 3 limites por período"
+
+  - id: conversao
+    pilar: previdenciario
+    gancho: "Tempo especial ainda pode virar tempo comum?"
+    pontos:
+      - "Depois da Reforma da Previdência, a conversão de tempo especial em comum acabou."
+      - "Mas o tempo especial trabalhado até 13/11/2019 ainda pode ser convertido."
+      - "Para quem tem esse período, a conversão pode antecipar a aposentadoria."
+    base_legal: "EC 103/2019, art. 25, § 2º"
+    hashtags: ["#tempoespecial", "#reformadaprevidencia", "#inss", "#aposentadoria"]
+    titulo_yt: "Conversão de tempo especial em comum depois da Reforma"
+
+  - id: cpc473
+    pilar: pericia
+    gancho: "O que um laudo pericial precisa ter"
+    pontos:
+      - "Exposição do objeto da perícia."
+      - "Análise técnica ou científica feita pelo perito."
+      - "Indicação do método utilizado, demonstrando que é aceito na área."
+      - "Resposta conclusiva a todos os quesitos das partes, do juiz e do Ministério Público."
+    base_legal: "CPC, art. 473, I a IV"
+    hashtags: ["#periciajudicial", "#laudopericial", "#cpc", "#perito"]
+    titulo_yt: "Os 4 requisitos do laudo pericial no CPC"
+
+  - id: assistente
+    pilar: pericia
+    gancho: "Nomearam um perito no seu processo. E agora?"
+    pontos:
+      - "As partes têm 15 dias da intimação da nomeação do perito."
+      - "Nesse prazo, podem arguir impedimento ou suspeição do perito."
+      - "Também podem indicar assistente técnico e apresentar quesitos."
+    base_legal: "CPC, art. 465, § 1º"
+    hashtags: ["#assistentetecnico", "#periciajudicial", "#quesitos", "#cpc"]
+    titulo_yt: "Perito nomeado: o que fazer nos 15 dias seguintes"
+
+  - id: parecer
+    pilar: pericia
+    gancho: "O laudo saiu. Você tem 15 dias"
+    pontos:
+      - "Depois da entrega do laudo, as partes são intimadas para se manifestar."
+      - "O prazo é comum de 15 dias."
+      - "No mesmo prazo, o assistente técnico pode apresentar o seu parecer."
+    base_legal: "CPC, art. 477, § 1º"
+    hashtags: ["#parecertecnico", "#assistentetecnico", "#periciajudicial", "#cpc"]
+    titulo_yt: "Laudo entregue: o prazo de 15 dias para o parecer técnico"
+
+  - id: pericia_tipos
+    pilar: pericia
+    gancho: "Perícia não é tudo igual"
+    pontos:
+      - "Exame: recai sobre pessoas ou coisas, como documentos e livros contábeis."
+      - "Vistoria: recai sobre imóveis ou lugares."
+      - "Avaliação: estima o valor de bens, direitos ou obrigações."
+    base_legal: "CPC, art. 464"
+    hashtags: ["#periciajudicial", "#periciacontabil", "#perito", "#cpc"]
+    titulo_yt: "Exame, vistoria ou avaliação: os 3 tipos de perícia"
+
+  - id: velatrix_autos
+    pilar: velatrix
+    gancho: "Ler autos inteiros sem perder a tarde"
+    pontos:
+      - "O Velatrix busca os documentos públicos do processo pelo CNPJ."
+      - "O leitor de autos organiza as peças e aponta o que importa."
+      - "O parecer sai com base nos documentos, sem dado inventado."
+    base_legal: "Ferramenta de apoio. A análise final é sempre do profissional."
+    hashtags: ["#velatrix", "#lawtech", "#processojudicial", "#tecnologiajuridica"]
+    titulo_yt: "Leitor de autos do Velatrix: processo inteiro em minutos"
+
+  - id: velatrix_radar
+    pilar: velatrix
+    gancho: "Como achar empresas com crédito tributário a recuperar"
+    pontos:
+      - "O Radar Receita cruza dados abertos da Receita Federal."
+      - "Ele aponta empresas candidatas a revisão pelo regime e pela atividade."
+      - "Você recebe a lista pronta para a análise técnica."
+    base_legal: "Ferramenta de apoio com dados públicos. A análise final é sempre do profissional."
+    hashtags: ["#velatrix", "#recuperacaotributaria", "#taxtech", "#contabilidade"]
+    titulo_yt: "Radar Receita do Velatrix: candidatas a recuperação tributária"
+
+  - id: velatrix_pericial
+    pilar: velatrix
+    gancho: "60 meses de dados fiscais em um laudo"
+    pontos:
+      - "O Motor Pericial do Velatrix lê ECD, ECF e EFD."
+      - "Ele monta a memória fiscal de 60 meses e aponta anomalias e lacunas."
+      - "O laudo sai em PDF, com o servidor refazendo as contas."
+    base_legal: "Ferramenta de apoio. A análise final é sempre do profissional."
+    hashtags: ["#velatrix", "#periciacontabil", "#sped", "#taxtech"]
+    titulo_yt: "Motor Pericial do Velatrix: 60 meses de dados fiscais em um laudo"
+
+  # ---- Pilar "escritorios": conteúdo para advogados e contadores (o público que assina o Velatrix) ----
+  - id: esc_monofasico_oportunidade
+    pilar: escritorios
+    gancho: "Contador: os monofásicos são a porta de entrada da recuperação tributária"
+    pontos:
+      - "Muita empresa do Simples revende produto monofásico e não separa essas receitas no DAS."
+      - "O levantamento parte dos arquivos fiscais que o escritório já tem do cliente."
+      - "É um serviço novo para a carteira atual, sem precisar captar cliente novo."
+    base_legal: "LC 123/2006, art. 18, § 4º-A, I; CTN, art. 168"
+    hashtags: ["#contabilidade", "#monofasico", "#recuperacaotributaria", "#contador"]
+    titulo_yt: "Contador: monofásicos como primeiro serviço de recuperação tributária"
+
+  - id: esc_carteira
+    pilar: escritorios
+    gancho: "A sua carteira de clientes já tem crédito tributário escondido"
+    pontos:
+      - "O primeiro lugar para procurar recuperação tributária é a carteira que você já atende."
+      - "Regime, atividade e produtos vendidos já indicam onde olhar primeiro."
+      - "Quem revisa antes do prazo de 5 anos correr entrega valor que o cliente percebe."
+    base_legal: "CTN, art. 168, I"
+    hashtags: ["#escritoriocontabil", "#recuperacaotributaria", "#contador", "#advocaciatributaria"]
+    titulo_yt: "Recuperação tributária começa pela carteira que você já tem"
+
+  - id: esc_laudo_rastreavel
+    pilar: escritorios
+    gancho: "Cálculo sem rastro não se sustenta"
+    pontos:
+      - "Todo número do laudo precisa dizer de que arquivo veio e qual regra o calculou."
+      - "O CPC exige indicar o método e responder de forma conclusiva aos quesitos."
+      - "Ferramenta ajuda no volume. A conferência e a assinatura continuam com o profissional."
+    base_legal: "CPC, art. 473, III e IV"
+    hashtags: ["#periciacontabil", "#laudopericial", "#escritoriocontabil", "#cpc"]
+    titulo_yt: "Laudo e cálculo tributário: por que todo número precisa de rastro"
+
+  - id: esc_parceria
+    pilar: escritorios
+    gancho: "Advogado e contador juntos rendem mais na recuperação tributária"
+    pontos:
+      - "O contador enxerga o crédito nos arquivos fiscais do cliente."
+      - "O advogado leva a tese ao Judiciário quando a via administrativa não basta."
+      - "Juntos, o cliente recebe o diagnóstico e a execução no mesmo lugar."
+    base_legal: "Lei 9.430/1996, art. 74; CTN, art. 168"
+    hashtags: ["#advocaciatributaria", "#contabilidade", "#recuperacaotributaria", "#parceria"]
+    titulo_yt: "Advogado + contador: a parceria que funciona na recuperação tributária"
