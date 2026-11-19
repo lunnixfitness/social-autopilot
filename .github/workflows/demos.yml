@@ -1,0 +1,32 @@
+name: demos
+
+# Gera os Shorts de demonstração do Velatrix (telas em assets/demos) com narração por IA.
+# Resultado: artefato "demos" e branch "demos-out" (para publicar pelo YouTube Studio).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  demos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-inter fonts-dejavu-core
+      - run: pip install -r requirements.txt
+      - name: Gerar demos com narração
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python -m autopilot demos --out demos_out
+      - uses: actions/upload-artifact@v4
+        with: { name: demos, path: demos_out, retention-days: 30 }
+      - name: Publicar na branch demos-out
+        run: |
+          cd demos_out
+          git init -q -b demos-out
+          git add -A
+          git -c user.name="autopilot[bot]" -c user.email="autopilot@users.noreply.github.com" commit -q -m "demos $(date +%F)"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" demos-out
