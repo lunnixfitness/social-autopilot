@@ -62,6 +62,7 @@ Terça, quarta e quinta às **08:30**, o workflow `linkedin` publica o próximo 
 4. Abra no navegador (trocando `CLIENT_ID`):
    `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=CLIENT_ID&redirect_uri=https%3A%2F%2Fvelatrix-blog.pages.dev%2Flinkedin-retorno%2F&scope=openid%20profile%20w_member_social&state=velatrix`
 5. Autorize. A página de retorno mostra um código: copie e rode **Actions → linkedin-auth → Run workflow** colando o código (vale poucos minutos). O workflow grava `LINKEDIN_ACCESS_TOKEN`, `LINKEDIN_AUTHOR_URN` e `LINKEDIN_TOKEN_CREATED_AT` usando o `GH_PAT`.
+   **Atalho sem `GH_PAT`:** em <https://www.linkedin.com/developers/tools/oauth/token-generator>, escolha o app, marque `openid`, `profile` e `w_member_social`, gere o token e cole-o no secret `LINKEDIN_ACCESS_TOKEN`. O autor é descoberto sozinho. Opcional: `LINKEDIN_TOKEN_CREATED_AT` com a data (AAAA-MM-DD) para o alerta dos 60 dias.
 6. Teste com **Actions → linkedin → Run workflow** (dry_run marcado) e baixe o artefato `previa-linkedin`.
 
 O token do LinkedIn vale **60 dias** e não renova sozinho. A partir do dia 50, o workflow abre a issue "Renovar token do LinkedIn": basta repetir os passos 4 e 5.

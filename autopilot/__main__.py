@@ -162,6 +162,18 @@ def cmd_linkedin(a) -> int:
         for item_id, n, status in res:
             print(f"{item_id:<28} {n:>5} caracteres  {status}")
         return 0 if all(s == "ok" for _, _, s in res) else 1
+    if a.acao == "check":
+        tok = os.environ.get("LINKEDIN_ACCESS_TOKEN")
+        if not tok:
+            print("LINKEDIN_ACCESS_TOKEN não definido")
+            return 1
+        try:
+            urn = li.LinkedIn(tok).author
+        except li.TokenError as e:
+            print(f"token recusado: {e}")
+            return 3
+        print(f"token OK: publica como {urn}")
+        return 0
     if a.acao == "token-check":
         criado = os.environ.get("LINKEDIN_TOKEN_CREATED_AT")
         if not criado:
@@ -194,7 +206,7 @@ def main(argv: list[str] | None = None) -> int:
     u = sub.add_parser("publish"); u.add_argument("--date"); u.add_argument("--site", default=str(ROOT / "site")); u.add_argument("--base-url", required=True)
     dm = sub.add_parser("demos"); dm.add_argument("--out", default=str(ROOT / "demos_out"))
     r = sub.add_parser("refresh-ig-token"); r.add_argument("--out", default="new_token.txt")
-    li = sub.add_parser("linkedin"); li.add_argument("acao", choices=["publish-next", "preview", "token-check"]); li.add_argument("--dry-run", action="store_true")
+    li = sub.add_parser("linkedin"); li.add_argument("acao", choices=["publish-next", "preview", "token-check", "check"]); li.add_argument("--dry-run", action="store_true")
     a = p.parse_args(argv)
     return {"build": cmd_build, "preview": cmd_preview, "publish": cmd_publish, "refresh-ig-token": cmd_refresh, "demos": cmd_demos, "linkedin": cmd_linkedin}[a.cmd](a)
 
