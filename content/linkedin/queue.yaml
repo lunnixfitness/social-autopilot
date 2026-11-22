@@ -1,0 +1,132 @@
+# Fila do LinkedIn. O robô publica o primeiro item ainda não publicado (ter, qua, qui às 08:30).
+# Regras: dado real sempre (fatos com fonte oficial, conferidos nos artigos do blog), sem promessa de
+# resultado, sem caso ou depoimento inventado, link só no 1º comentário, de 1 a 5 hashtags.
+posts:
+  - id: li-001-tema69
+    pilar: educativo
+    fonte: exclusao-icms-base-pis-cofins-tema-69
+    texto: |
+      O ICMS destacado na nota ainda está inflando o PIS/Cofins de muita empresa.
+
+      E boa parte dos contadores e advogados tributaristas já sabe disso. O que falta é tempo para revisar a carteira inteira.
+
+      O que está definido:
+
+      → Em 15/03/2017, no Tema 69 (RE 574.706), o STF fixou que o ICMS não compõe a base de cálculo do PIS e da Cofins.
+      → Na modulação, a exclusão vale a partir de 15/03/2017, ressalvadas as ações e pedidos administrativos protocolados até essa data.
+      → O valor que sai da base é o ICMS destacado na nota fiscal, não só o recolhido.
+      → No Tema 1.279, o STF fechou a porta para fatos geradores anteriores a 15/03/2017 sem ação ou pedido até aquela data.
+      → A restituição prescreve em cinco anos (CTN, art. 168).
+
+      E um detalhe que muita revisão esquece: desde maio de 2023, pela Lei 14.592/2023, o ICMS das compras também saiu da base dos créditos de PIS/Cofins no regime não cumulativo. A revisão precisa separar os dois períodos.
+
+      O trabalho real não está na tese. Está no recálculo mês a mês, com EFD-Contribuições, EFD ICMS/IPI e XML das notas, e numa memória de cálculo que um perito consiga refazer.
+
+      Escrevi um guia completo, com exemplo hipotético de cálculo e lista de documentos. O link está no primeiro comentário.
+    hashtags: ["#DireitoTributario", "#RecuperacaoTributaria", "#Contabilidade", "#PISCofins"]
+    primeiro_comentario: "Guia completo do Tema 69, com fontes oficiais: https://velatrix-blog.pages.dev/blog/exclusao-icms-base-pis-cofins-tema-69/"
+
+  - id: li-002-contador-carteira
+    pilar: dor
+    fonte: exclusao-icms-base-pis-cofins-tema-69
+    texto: |
+      Contador, uma pergunta direta:
+
+      Quantos clientes do Lucro Real e do Presumido na sua carteira nunca tiveram a base do PIS/Cofins revisada?
+
+      Na maioria dos escritórios, a resposta é "não sei". E não por falta de competência. Revisar exige cruzar escrituração, notas e recolhimentos de cinco anos, cliente por cliente.
+
+      Um roteiro de diagnóstico que funciona:
+
+      1. Verificar se o cliente já tem ação ou pedido administrativo sobre o tema, e a data do protocolo.
+      2. Separar EFD-Contribuições, EFD ICMS/IPI e os XML de saída do período não prescrito.
+      3. Conferir DCTF e DARF de PIS e Cofins.
+      4. Conciliar a receita da ECF com a receita tributável. Divergência aqui costuma ser a primeira pista de erro de base.
+      5. Recalcular mês a mês e documentar tudo, porque a compensação precisa resistir a uma fiscalização.
+
+      Esse diagnóstico é um serviço que o próprio contador pode oferecer, com o cliente que ele já tem.
+
+      É exatamente esse trabalho de cruzamento que estou automatizando na Velatrix: leitura de ECD, ECF e EFD com dados reais, para o profissional chegar mais rápido ao número que importa.
+
+      Se você quer testar com a sua carteira, comente "diagnóstico" ou entre no grupo do primeiro comentário.
+    hashtags: ["#Contabilidade", "#RecuperacaoTributaria", "#SPED", "#Contador"]
+    primeiro_comentario: "Grupo da Velatrix para advogados, contadores e peritos: https://chat.whatsapp.com/C6Zckv8VrElDpfcFncPpIr — e o guia do Tema 69: https://velatrix-blog.pages.dev/blog/exclusao-icms-base-pis-cofins-tema-69/"
+
+  - id: li-003-transacao-pgfn
+    pilar: educativo
+    fonte: transacao-tributaria-pgfn-guia
+    texto: |
+      "Até 65% de desconto na transação com a PGFN."
+
+      Essa frase aparece em todo lugar. Mas quase nunca o cliente vai ver 65% sobre a dívida dele.
+
+      O motivo está na lei: o desconto da transação não pode alcançar o principal. Ele incide sobre multa, juros e encargos.
+
+      Exemplo hipotético de uma inscrição de R$ 1.000.000:
+      → Principal: R$ 400.000
+      → Multa, juros e encargo legal: R$ 600.000
+      → Teto legal (65% do total): R$ 650.000
+      → Desconto máximo possível: R$ 600.000, ou seja, 60% do total
+
+      Em dívida recente, com poucos juros acumulados, o desconto possível cai ainda mais.
+
+      Os parâmetros gerais da Lei 13.988/2020, com as mudanças da Lei 14.375/2022:
+      → até 65% de desconto e até 120 meses;
+      → para pessoa física, ME e EPP, até 70% e até 145 meses;
+      → o desconto concreto depende da capacidade de pagamento que a PGFN atribui ao contribuinte.
+
+      E um ponto que pesa na decisão: a adesão é confissão irrevogável e irretratável dos débitos incluídos. Antes de aderir, vale conferir prescrição, pagamentos e ações em curso.
+
+      Detalhei tudo, com o passo a passo no REGULARIZE, no artigo do primeiro comentário.
+    hashtags: ["#DireitoTributario", "#PGFN", "#TransacaoTributaria", "#Contabilidade"]
+    primeiro_comentario: "Guia da transação tributária com a PGFN: https://velatrix-blog.pages.dev/blog/transacao-tributaria-pgfn-guia/"
+
+  - id: li-004-bastidores
+    pilar: bastidores
+    texto: |
+      Estou construindo a Velatrix, e quero fazer isso em público.
+
+      A ideia nasceu de uma constatação simples: advogados, contadores e peritos gastam horas juntando dados que já são públicos ou que já estão no SPED do cliente. E perdem oportunidades porque não têm tempo de procurar.
+
+      O que já está construído, com dados reais (em fase de testes, liberando aos poucos):
+      → leitura de ECD e ECF, com a DRE montada e análise vertical e horizontal;
+      → cruzamento de empresas com a dívida ativa da União;
+      → enriquecimento de cadastros com os dados abertos da Receita Federal;
+      → laudos em PDF com a memória de cálculo;
+      → consulta de processos judiciais por CNPJ, que está sendo ativada.
+
+      E o que estou montando agora: um radar que usa dados públicos para apontar empresas com perfil para revisão tributária, e um caminho para esses leads qualificados chegarem a profissionais parceiros.
+
+      Uma regra que não vou quebrar: nada de número inventado, caso inventado ou promessa de resultado. Só dado real e fonte oficial.
+
+      O uso é grátis para o profissional. Se você é advogado, contador ou perito e quer acompanhar de perto, testar e dar opinião, o grupo está no primeiro comentário.
+    hashtags: ["#LegalTech", "#Contabilidade", "#DireitoTributario", "#Empreendedorismo"]
+    primeiro_comentario: "Grupo da Velatrix para profissionais: https://chat.whatsapp.com/C6Zckv8VrElDpfcFncPpIr"
+
+  - id: li-005-reforma
+    pilar: educativo
+    fonte: reforma-tributaria-cronograma-cbs-ibs
+    texto: |
+      2027 está a um mês de distância. E é o ano em que o PIS e a Cofins deixam de existir.
+
+      O cronograma da reforma tributária do consumo, pela EC 132/2023 e pela LC 214/2025:
+
+      2026: teste. CBS de 0,9% e IBS de 0,1% destacados na nota, com recolhimento dispensado para quem cumpre as obrigações acessórias.
+
+      2027: a CBS passa a ser cobrada e o PIS e a Cofins são extintos. O IBS segue em teste.
+
+      2029 a 2032: ICMS e ISS caem de forma escalonada (10%, 20%, 30% e 40% de redução) enquanto o IBS cresce.
+
+      2033: ICMS e ISS deixam de existir.
+
+      Três consequências práticas para quem assessora empresas:
+
+      → O crédito passa a ser financeiro e amplo. Cadastro e documento fiscal corretos viram questão de sobrevivência.
+      → O split payment separa o imposto no momento do pagamento. O capital de giro do cliente precisa ser recalculado.
+      → As teses sobre PIS e Cofins continuam valendo para os períodos não prescritos. A extinção não apaga recolhimentos indevidos já feitos.
+
+      Para o contador e o advogado, isso não é só obrigação nova. É uma agenda de trabalho com cada cliente da carteira.
+
+      O cronograma completo, ano a ano, está no artigo do primeiro comentário.
+    hashtags: ["#ReformaTributaria", "#CBS", "#IBS", "#Contabilidade", "#DireitoTributario"]
+    primeiro_comentario: "Cronograma completo da reforma tributária: https://velatrix-blog.pages.dev/blog/reforma-tributaria-cronograma-cbs-ibs/"

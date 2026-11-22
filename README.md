@@ -1,4 +1,4 @@
-# social-autopilot — Instagram, Facebook e YouTube Shorts no automático
+# social-autopilot — Instagram, Facebook, YouTube Shorts e LinkedIn no automático
 
 Todo dia às **12:10 (Brasília)**, o GitHub Actions executa estas etapas:
 
@@ -53,6 +53,21 @@ Reels e carrosséis do Instagram também saem na **Página Velatrix**: o reel vi
 
 > **Grupos não têm API**: a Meta desligou a publicação em grupos em 2024. O grupo é tocado no app (posts agendados pelo próprio grupo), e o automático leva tráfego da Página, do Instagram e do YouTube para ele.
 
+### 3.2 LinkedIn (API oficial, gratuita)
+Terça, quarta e quinta às **08:30**, o workflow `linkedin` publica o próximo post da fila `content/linkedin/queue.yaml` no seu perfil e coloca o link no 1º comentário. Os posts vêm dos artigos do Blog Velatrix, com dado real e fonte oficial. As travas bloqueiam promessa de resultado, caso ou depoimento inventado e link no corpo do post.
+
+1. Em <https://www.linkedin.com/developers/apps>, clique em **Create app** e vincule à Página **Velatrix**.
+2. Na aba **Products**, adicione **Sign In with LinkedIn using OpenID Connect** e **Share on LinkedIn**.
+3. Na aba **Auth**, em *Authorized redirect URLs*, cadastre `https://velatrix-blog.pages.dev/linkedin-retorno/`. Copie o **Client ID** e o **Client Secret** para os secrets `LINKEDIN_CLIENT_ID` e `LINKEDIN_CLIENT_SECRET`.
+4. Abra no navegador (trocando `CLIENT_ID`):
+   `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=CLIENT_ID&redirect_uri=https%3A%2F%2Fvelatrix-blog.pages.dev%2Flinkedin-retorno%2F&scope=openid%20profile%20w_member_social&state=velatrix`
+5. Autorize. A página de retorno mostra um código: copie e rode **Actions → linkedin-auth → Run workflow** colando o código (vale poucos minutos). O workflow grava `LINKEDIN_ACCESS_TOKEN`, `LINKEDIN_AUTHOR_URN` e `LINKEDIN_TOKEN_CREATED_AT` usando o `GH_PAT`.
+6. Teste com **Actions → linkedin → Run workflow** (dry_run marcado) e baixe o artefato `previa-linkedin`.
+
+O token do LinkedIn vale **60 dias** e não renova sozinho. A partir do dia 50, o workflow abre a issue "Renovar token do LinkedIn": basta repetir os passos 4 e 5.
+
+Para postar na **Página** Velatrix (e não só no perfil), o LinkedIn exige a *Community Management API*, que passa por revisão. Peça na aba Products quando quiser.
+
 ### 4. Secrets do repositório
 Abra **Settings → Secrets and variables → Actions → New repository secret**.
 
@@ -62,6 +77,7 @@ Abra **Settings → Secrets and variables → Actions → New repository secret*
 | `GH_PAT` | Instagram | token *fine-grained* do GitHub, só deste repositório, com **Secrets: Read and write**. Renova o token do Instagram |
 | `YT_CLIENT_ID` / `YT_CLIENT_SECRET` / `YT_REFRESH_TOKEN` | YouTube | os valores do passo 3 |
 | `FB_PAGE_ID` / `FB_PAGE_TOKEN` | Facebook | os valores do passo 3.1 |
+| `LINKEDIN_CLIENT_ID` / `LINKEDIN_CLIENT_SECRET` | LinkedIn | os valores do passo 3.2 (o token é gravado pelo workflow `linkedin-auth`) |
 | `GEMINI_API_KEY` | não | chave do Google AI Studio. Sem ela, os textos saem como estão no banco |
 | `IG_USER_ID` | não | descoberto automaticamente |
 

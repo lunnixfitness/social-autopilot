@@ -1,0 +1,94 @@
+name: linkedin
+
+# Terça, quarta e quinta às 08:30 (Brasília) = 11:30 UTC.
+on:
+  schedule:
+    - cron: '30 11 * * 2-4'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Só gerar a prévia (não publica)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: linkedin
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -r requirements.txt
+      - name: Testes (nada sai se algum falhar)
+        run: python -m pytest -q tests/test_linkedin.py
+      - name: Publicar o próximo post
+        id: pub
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_AUTHOR_URN: ${{ secrets.LINKEDIN_AUTHOR_URN }}
+          LINKEDIN_API_VERSION: ${{ vars.LINKEDIN_API_VERSION }}
+          DRY: ${{ inputs.dry_run }}
+        run: |
+          set +e
+          if [ "$DRY" = "true" ]; then
+            python -m autopilot linkedin preview
+            python -m autopilot linkedin publish-next --dry-run
+          else
+            python -m autopilot linkedin publish-next
+          fi
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          [ $code -eq 3 ] && exit 0
+          exit $code
+      - name: Prévia
+        if: inputs.dry_run == true
+        uses: actions/upload-artifact@v4
+        with: { name: previa-linkedin, path: preview/linkedin, retention-days: 14 }
+      - name: Guardar o histórico
+        if: inputs.dry_run != true
+        run: |
+          git config user.name "autopilot[bot]"
+          git config user.email "autopilot@users.noreply.github.com"
+          git add state/linkedin_posted.json 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "linkedin: histórico $(date +%F)" && git push)
+      - name: Avisar token recusado
+        if: steps.pub.outputs.code == '3'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list --state open --search "Renovar token do LinkedIn in:title" --json number --jq 'length' | grep -q '^0$' && \
+          gh issue create --title "Renovar token do LinkedIn" --body "O LinkedIn recusou o token (401). Rode Actions → linkedin-auth seguindo o README para gerar um novo." || true
+          exit 1
+
+  token-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -r requirements.txt
+      - name: Idade do token (vence em 60 dias)
+        id: tk
+        env:
+          LINKEDIN_TOKEN_CREATED_AT: ${{ secrets.LINKEDIN_TOKEN_CREATED_AT }}
+        run: |
+          set +e
+          python -m autopilot linkedin token-check
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+      - name: Abrir issue a partir do dia 50
+        if: steps.tk.outputs.code == '2'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list --state open --search "Renovar token do LinkedIn in:title" --json number --jq 'length' | grep -q '^0$' && \
+          gh issue create --title "Renovar token do LinkedIn" --body "O token do LinkedIn vence em até 10 dias. Rode Actions → linkedin-auth seguindo o README." || true
+          exit 1

@@ -69,3 +69,11 @@ termos_proibidos:
   - "gratuitamente"
   - "dinheiro fácil"
   - "imperdível"
+
+# LinkedIn (perfil pessoal pela API oficial; a Página entra quando o LinkedIn liberar a Community Management API)
+linkedin:
+  min_chars: 600
+  max_chars: 2800
+  max_hashtags: 5
+  blog: "https://velatrix-blog.pages.dev/blog/"   # troca para https://velatrix.com.br/blog/ quando o domínio for para o Cloudflare
+  grupo_whatsapp: "https://chat.whatsapp.com/C6Zckv8VrElDpfcFncPpIr"
